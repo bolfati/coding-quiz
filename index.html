@@ -3,34 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="style" href="assets/style.css">
-    <title>CODING QUIZ</title>
+    <link rel="stylesheet" href="assets\style.css">
+    <title>Bijan Coding Quiz</title>
 </head>
-
-
 <body>
-    <header><!--NEED TO ADD HEADER FOR HIGHSCORE ELEMENT TOP LEFT AND TIMER-->
-        <h2 id="timer"></h2>
+    <header class="top">
+        <h1 id="highscores">High Score List Here</h1> 
+        <h2 id="timer"></h2> 
     </header>
 
-    <section id="start"><!--ADD WAY TO MOVE BUTTON AFTER CLICK TO QUESTIONS-->
-        <button id="begin"> BEGIN QUIZ </button>
+    <section id="begin"> 
+        
+        <button id="start">Start</button>
     </section>
-    
-    
-    <div id="quesArea" >Question
+
+    <div id="quizArea">
+        <h4 id="question">What is coding like?</h4>
         <ul>
-        <li id="answer1" data-number="1">Question 1</li>
-        <li id="answer2" data-number="2">Question 2</li>
-        <li id="answer3" data-number="3">Question 3</li>
-        <li id="answer4" data-number="4">Question 4</li>
+        <li id="answers1" data-number="1">All of the below</li>
+        <li id="answers2" data-number="2">Fun</li>
+        <li id="answers3" data-number="3">Exciting</li>
+        <li id="answers4" data-number="4">Time Consuming</li>
         </ul>
-        <h4 id ="answer"></h4>
+        <h5 id="answer"></h5>
     </div>
-    <div>
-        <p id="score"> Your score is:</p>
-        <input type="text" id="score1">
+
+    <div id ="results">
+        <h6>Results:</h6>
+        <p id="scoring">Your score is:<p>
+        <input type="text" id="content1" placeholder="Type Name Here" />
+        <button id="submit">Submit to High Scores</button>
     </div>
-    <script src="assets/script.js"></script>
+
+    <div id="scores">
+        <div id="names">
+            </div> 
+        </div>
+        <script type="text/javascript" src="assets\script.js"></script>
 </body>
 </html>

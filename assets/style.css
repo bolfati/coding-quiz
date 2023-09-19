@@ -1,0 +1,96 @@
+header{
+    display: flex;
+    background-color: whitesmoke;
+}
+
+body{
+    color: rgb(41, 2, 2);
+    background-color: rgb(4, 84, 150);
+}
+
+h2{
+    margin-left: auto;
+}
+
+section{
+    text-align: center;
+}
+
+section h3{
+    font-size: 50px;
+}
+
+h4{
+    
+    text-align: left;
+    margin: auto;
+    margin-bottom: 50px;
+
+}
+
+#start{
+  background-color: teal;
+  cursor: pointer;
+  padding: 20px 52px;
+  margin: auto;
+  display: block;
+  line-height: 20px;
+  max-width: 200px;
+}
+
+div ul{
+    list-style-type: none;
+    text-align: center;
+    margin: auto;
+}
+
+div ul li {
+    margin: 20px;
+    background-color: teal;
+}
+
+div li:hover{
+    color:pink;
+    cursor: pointer;
+}
+
+h6 {
+    font-size: 30px;
+}
+
+div p{
+    color: black;
+}
+
+
+#timer{
+    color: red;
+}
+
+#answer{
+    font-size: 20px;
+    text-align: center;
+    margin-left: 35px;
+    color: rgb(122, 3, 3);
+}
+
+#names{
+    font-size: 48px;
+    text-align: center;
+}
+#quizArea{
+    background-color: gray;
+    color: #0f0101;
+    padding: 50px 35px;
+    margin: 200px;
+}
+
+#results{
+    text-align: center;
+    background-color: gray;
+    color: #0f0101;
+    padding: 30px 30px;
+    margin: 200px;
+
+    
+}

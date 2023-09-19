@@ -1,83 +1,163 @@
-//VARIABLE SPACE
-var timerElement = document.getElementById("timer"); //timer element on page
-var begin = document.getElementById("begin"); //getting a handle on button
-var click = document.getElementById("start");
-var remainingTime = 30; //initial timer element value
-var answerOne = document.getElementById("answer1");
-var answerTwo = document.getElementById("answer2");
-var answerThree = document.getElementById("answer3");
-var answerFour = document.getElementById("answer4");
-var questionArea = document.getElementById("quesArea");
-var 
+var timerElement = document.getElementById('timer'); 
+var beginElement = document.getElementById('begin'); 
+var click = document.getElementById('start'); 
+var quizArea = document.getElementById('quizArea');
+var question = document.getElementById('question'); 
+var answer1 = document.getElementById('answers1');
+var answer2 = document.getElementById('answers2');
+var answer3 = document.getElementById('answers3');
+var answer4 = document.getElementById('answers4'); 
+var hspage = document.getElementById('scores');
+var scoring = document.getElementById('scoring'); 
+var answer = document.getElementById('answer'); 
+var quizlength = 4; 
+var score = 0; 
+var quizended = false;
+var hs = document.getElementById('highscores'); 
+var submit = document.getElementById('submit'); 
+var timeRemaining = 30; 
 
 
-//GIVEN I am taking a code quiz 
-//TODO make start quiz button
+quizArea.style.display = "none"; 
+results.style.display = "none";
+hspage.style.display = "none";
 
-function beginQuiz(event) {
-    setTime();
-  event.preventDefault();
-    console.log("log for begin quiz");
+var contentEL = document.getElementById('names'); 
 
-    begin.style.display = "none"
+
+
+function quizStart(event){
+    event.preventDefault();
+
+    quizlength = 4; 
+    score = 0;
+    beginElement.style.display = "none"; 
+    quizArea.style.display = "block"; 
+    hspage.style.display = "none";
+    
+    
+
+    var timerInterval = setInterval(function() {
+        timerElement.textContent = "Time Left: " + timeRemaining--;
+    
+        if(timeRemaining === 0 || quizended) {
+            timerElement.textContent = "";
+          clearInterval(timerInterval);
+          quizStop(); 
+          
+        }
+    }, 1000);
+};
+
+
+function quizStop(event){ 
+    quizended = true; 
+   quizArea.style.display = "none";
+   results.style.display = "block";
+   scoring.textContent = "Your total score is " + score;
+   timerElement.textContent = "";
+
+  submit.addEventListener("click", highScores);
+   }
+
+function highScores(event){ 
+    event.preventDefault();
+    results.style.display = "none";
+    quizArea.style.display = "none";
+    beginElement.style.display = "none";
+    hspage.style.display = "block";
+
+    var nameContent = document.querySelector("#content1").value; 
+    localStorage.setItem("naming", nameContent); 
+    var finalName = localStorage.getItem("naming"); 
+
+    if (quizended){
+    names.textContent = finalName + " has scored " + score + "out of 4";
+    }
+
+    if (!quizended){
+        var startAgain = document.createElement("button");
+        names.append(startAgain);
+        startAgain.textContent = "Start Quiz?";
+        startAgain.addEventListener("click", quizStart);
+     }
+    }
+
+    function submitted(datanum){ 
+
+    if (quizlength === 3){
+        question.textContent = "What is my dog's name?"
+        answer1.textContent = "Dragon"
+        answer2.textContent = "Air Bud"
+        answer3.textContent = "Moose"
+        answer4.textContent = "Greg"
+
+        if (datanum == 1){
+            answer.textContent = "Correct";
+            score++;
+        } else {
+            answer.textContent = "Incorrect";
+            timeRemaining = timeRemaining - 10;
+        }
+    }
+
+    if (quizlength === 2){
+        question.textContent = "What Coding language do we use the most?"
+        answer1.textContent = "French"
+        answer2.textContent = "Spanish"
+        answer3.textContent = "Java"
+        answer4.textContent = "Javascript"
+
+        if (datanum == 3){
+            answer.textContent = "Correct";
+            score++;
+        } else {
+            answer.textContent = "Incorrect";
+            timeRemaining = timeRemaining - 10;
+        }
+    }
+
+    if (quizlength === 1) {
+        question.textContent = "Who is our instructor?"
+        answer1.textContent = "Jacob"
+        answer2.textContent = "Jared"
+        answer3.textContent = "Jeremy"
+        answer4.textContent = "Jose"
+
+        if (datanum == 4){
+            answer.textContent = "Correct";
+            score++;
+        } else {
+            answer.textContent = "Incorrect";
+            timeRemaining = timeRemaining - 10;
+        }
+    }
+
+    if (quizlength === 0){
+        if (datanum == 3){
+            answer.textContent = "Correct";
+            score++;
+        } else {
+            answer.textContent = "Incorrect"; 
+        }
+        
+        quizStop();
+    }
 
     
 }
 
-//WHEN I click the start button
-//TODO add event listener for click and to show questions/timer
-//TODO create timer
-
-function setTime() {
-    var timerInterval = setInterval(function() {
-      timerElement.textContent = "You have " + remainingTime + " seconds left!";
-      remainingTime--;
-      
-      if(remainingTime < 0) {
-        console.log("quiz has ended");
-        clearInterval(timerInterval);
-      }
-    }, 1000);
-
-}
-
-questionArea.addEventListener("click", answerButtons) 
-
-function answerButtons(event) {
-var choices = 
-}
-
-
-
-//THEN a timer starts and I am presented with a question
-//TODO add clickable sets of questions relating to JS
-
-
-
-
-//WHEN I answer a question
-//TODO make function to grab answer, keep score if correct answer
-
-
-//THEN I am presented with another question
-//TODO make first set of questions change to second, third, etc
-
-//WHEN I answer a question incorrectly
-//THEN time is subtracted from the clock
-//TODO add function for timer subtraction when answer is incorrect
-
-
-//WHEN all questions are answered or the timer reaches 0
-//TODO set parameters to end quiz
-
-//THEN the game is over
-//TODO make function to end game on timer 0/all questions answered
-
-//WHEN the game is over
-//TODO add game over screen
-
-//THEN I can save my initials and my score
-//TODO add submit form and show score
-
-
-begin.addEventListener("click", beginQuiz); //catching button click event to start quiz/timer
+start.addEventListener("click", quizStart);
+hs.addEventListener("click", highScores);
+quizArea.addEventListener("click", function(event) { 
+    
+    var element = event.target; 
+    var datanum = element.getAttribute("data-number");
+    console.log(element);
+    console.log(datanum);
+    if (datanum == 1 ||datanum == 2|| datanum == 3 || datanum == 4){
+    quizlength--;
+    submitted(datanum);
+    
+    }
+  });
